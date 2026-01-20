@@ -5,11 +5,13 @@ const envs = () => {
     const SHOULD_DISPLAY_VIEW_RUN_BUTTON = defineEnvironmentVariable('SHOULD_DISPLAY_VIEW_RUN_BUTTON', false);
     const SHOULD_DISPLAY_VIEW_COMMIT_BUTTON = defineEnvironmentVariable('SHOULD_DISPLAY_VIEW_COMMIT_BUTTON', false);
     const SHOULD_DISPLAY_ACTOR_LABEL = defineEnvironmentVariable('SHOULD_DISPLAY_ACTOR_LABEL', false);
+    const SHOULD_DISPLAY_VIEW_TAG_BUTTON = defineEnvironmentVariable('SHOULD_DISPLAY_VIEW_TAG_BUTTON', false);
 
     const envVariableNames = [
         SHOULD_DISPLAY_VIEW_RUN_BUTTON,
         SHOULD_DISPLAY_VIEW_COMMIT_BUTTON,
         SHOULD_DISPLAY_ACTOR_LABEL,
+        SHOULD_DISPLAY_VIEW_TAG_BUTTON,
     ];
 
     // Read env variable values, set to default if value not set
