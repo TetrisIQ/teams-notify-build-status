@@ -126,7 +126,7 @@ class CustomizeCard {
                                         "type": "Column",
                                         "width": "auto",
                                         "verticalContentAlignment": "center",
-                                        "isVisible": SHOULD_DISPLAY_VIEW_RUN_BUTTON || SHOULD_DISPLAY_VIEW_COMMIT_BUTTON || SHOULD_DISPLAY_VIEW_TAG_BUTTON,
+                                        "isVisible": SHOULD_DISPLAY_VIEW_RUN_BUTTON || SHOULD_DISPLAY_VIEW_COMMIT_BUTTON || SHOULD_DISPLAY_VIEW_TAG_BUTTON || SHOULD_DISPLAY_VIEW_RELEASE_BUTTON,
                                         "items": [
                                             {
                                                 "type": "ActionSet",
@@ -146,6 +146,12 @@ class CustomizeCard {
                                                 "actions": SHOULD_DISPLAY_VIEW_TAG_BUTTON ?
                                                     this._constructOpenUrlButton("View tag", this._tagUrl()) : []
                                             },
+                                            {
+                                                "type": "ActionSet",
+                                                "isVisible": SHOULD_DISPLAY_VIEW_RELEASE_BUTTON,
+                                                "actions": SHOULD_DISPLAY_VIEW_RELEASE_BUTTON ?
+                                                    this._constructOpenUrlButton("View release", this._releaseUrl()) : []
+                                            }
                                         ]
                                     }
                                 ]
@@ -167,6 +173,10 @@ class CustomizeCard {
 
     _tagUrl() {
         return `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/tag/${GITHUB_REF}`;
+    }
+
+    _releaseUrl() {
+        return `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/${GITHUB_REF}`;
     }
 
     constructCard() {
