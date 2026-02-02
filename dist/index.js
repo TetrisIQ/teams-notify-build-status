@@ -25746,7 +25746,7 @@ class CustomizeCard {
                                         "type": "Column",
                                         "width": "auto",
                                         "verticalContentAlignment": "center",
-                                        "isVisible": SHOULD_DISPLAY_VIEW_RUN_BUTTON || SHOULD_DISPLAY_VIEW_COMMIT_BUTTON || SHOULD_DISPLAY_VIEW_TAG_BUTTON,
+                                        "isVisible": SHOULD_DISPLAY_VIEW_RUN_BUTTON || SHOULD_DISPLAY_VIEW_COMMIT_BUTTON || SHOULD_DISPLAY_VIEW_TAG_BUTTON || SHOULD_DISPLAY_VIEW_RELEASE_BUTTON,
                                         "items": [
                                             {
                                                 "type": "ActionSet",
@@ -25766,6 +25766,12 @@ class CustomizeCard {
                                                 "actions": SHOULD_DISPLAY_VIEW_TAG_BUTTON ?
                                                     this._constructOpenUrlButton("View tag", this._tagUrl()) : []
                                             },
+                                            {
+                                                "type": "ActionSet",
+                                                "isVisible": SHOULD_DISPLAY_VIEW_RELEASE_BUTTON,
+                                                "actions": SHOULD_DISPLAY_VIEW_RELEASE_BUTTON ?
+                                                    this._constructOpenUrlButton("View release", this._releaseUrl()) : []
+                                            }
                                         ]
                                     }
                                 ]
@@ -25787,6 +25793,10 @@ class CustomizeCard {
 
     _tagUrl() {
         return `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/tag/${GITHUB_REF}`;
+    }
+
+    _releaseUrl() {
+        return `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/${GITHUB_REF}`;
     }
 
     constructCard() {
@@ -25872,20 +25882,22 @@ const envs = () => {
     const SHOULD_DISPLAY_VIEW_COMMIT_BUTTON = defineEnvironmentVariable('SHOULD_DISPLAY_VIEW_COMMIT_BUTTON', false);
     const SHOULD_DISPLAY_ACTOR_LABEL = defineEnvironmentVariable('SHOULD_DISPLAY_ACTOR_LABEL', false);
     const SHOULD_DISPLAY_VIEW_TAG_BUTTON = defineEnvironmentVariable('SHOULD_DISPLAY_VIEW_TAG_BUTTON', false);
+    const SHOULD_DISPLAY_VIEW_RELEASE_BUTTON = defineEnvironmentVariable('SHOULD_DISPLAY_VIEW_RELEASE_BUTTON', false);
 
     const envVariableNames = [
         SHOULD_DISPLAY_VIEW_RUN_BUTTON,
         SHOULD_DISPLAY_VIEW_COMMIT_BUTTON,
         SHOULD_DISPLAY_ACTOR_LABEL,
         SHOULD_DISPLAY_VIEW_TAG_BUTTON,
+        SHOULD_DISPLAY_VIEW_RELEASE_BUTTON,
     ];
 
     // Read env variable values, set to default if value not set
     const allEnvs = {};
     envVariableNames.forEach(envName => {
-            const envElement = process.env[envName[0]];
-            allEnvs[envName[0]] = envElement ? validateEnvVariableName(envName[0], envElement) : envName[1];
-        }
+        const envElement = process.env[envName[0]];
+        allEnvs[envName[0]] = envElement ? validateEnvVariableName(envName[0], envElement) : envName[1];
+    }
     );
 
     // Debug logging
