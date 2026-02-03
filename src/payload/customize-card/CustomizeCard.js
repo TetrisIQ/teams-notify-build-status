@@ -18,6 +18,7 @@ class CustomizeCard {
             SHOULD_DISPLAY_VIEW_RUN_BUTTON,
             SHOULD_DISPLAY_VIEW_COMMIT_BUTTON,
             SHOULD_DISPLAY_VIEW_TAG_BUTTON,
+            SHOULD_DISPLAY_VIEW_RELEASE_BUTTON,
             SHOULD_DISPLAY_ACTOR_LABEL,
         } = envs();
         this._messageObject = {
