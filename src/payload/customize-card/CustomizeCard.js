@@ -177,9 +177,9 @@ class CustomizeCard {
     }
 
     _releaseUrl() {
-        return `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/${GITHUB_REF}`;
+        const tagName = GITHUB_REF.replace(/^refs\/tags\//, '');
+        return `${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/tag/${tagName}`;
     }
-
     constructCard() {
         this._constructJson();
         return this._messageObject;
